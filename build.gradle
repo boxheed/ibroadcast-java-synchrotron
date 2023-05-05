@@ -11,10 +11,22 @@ buildscript {
 	}
 	dependencies {
 		classpath 'com.fizzpod:gradle-java-opinion:0.14.3'
+		classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:2.7.11"
   	}
 }
 
 apply plugin: 'com.fizzpod.pater-build'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+
+tasks.named("bootJar") {
+	mainClass = 'com.fizzpod.ibroadcast.Main'
+}
+
+tasks.named("bootJar") {
+	launchScript()
+}
 
 dependencies {
 }

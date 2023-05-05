@@ -17,6 +17,7 @@ buildscript {
 }
 
 apply plugin: 'com.fizzpod.pater-build'
+apply plugin: 'groovy'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.springframework.boot'
 
@@ -29,4 +30,7 @@ tasks.named("bootJar") {
 }
 
 dependencies {
+	// https://mvnrepository.com/artifact/org.apache.groovy/groovy-all
+	implementation 'org.apache.groovy:groovy-all:4.0.11'
+
 }

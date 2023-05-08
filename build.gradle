@@ -30,7 +30,8 @@ tasks.named("bootJar") {
 }
 
 dependencies {
-	// https://mvnrepository.com/artifact/org.apache.groovy/groovy-all
 	implementation 'org.apache.groovy:groovy-all:4.0.11'
+	implementation 'org.tinylog:tinylog-api:2.6.1'
+	implementation 'org.tinylog:tinylog-impl:2.6.1'
 
 }

@@ -30,8 +30,11 @@ tasks.named("bootJar") {
 }
 
 dependencies {
-	implementation 'org.apache.groovy:groovy-all:4.0.11'
+	implementation 'org.apache.groovy:groovy-all:4.0.12'
+	implementation 'org.apache.groovy:groovy-contracts:4.0.12'
+
 	implementation 'org.tinylog:tinylog-api:2.6.1'
 	implementation 'org.tinylog:tinylog-impl:2.6.1'
-
+	implementation 'org.mapdb:mapdb:3.0.9'
+	implementation 'com.squareup.okhttp3:okhttp:4.11.0'
 }

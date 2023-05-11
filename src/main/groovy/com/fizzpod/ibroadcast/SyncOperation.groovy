@@ -9,16 +9,23 @@ public class SyncOperation {
     public static def run(def options) {
         info("Starting sync operation")
         createPipeline(options)
-        LocalMusic.scan(options.i, { f ->
-            info(f);
-        });
     }
 
     private static def createPipeline(def options) {
         def credentials = IBroadcast.auth(options.u, options.p)
-        IBroadcast.listTracks(credentials)
-        IBroadcast.listAlbums(credentials)
-        IBroadcast.getMusicChecksums(credentials)
+        def tracks = IBroadcast.listTracks(credentials)
+        def albums = IBroadcast.listAlbums(credentials)
+        def checksums = IBroadcast.getMusicChecksums(credentials)
+        info(checksums)
+        LocalMusic.scan(options.i, { f ->
+            info("Processing {} ", f);
+            def data = TrackData.read(f);
+            if(checksums.contains(data.checksum)) {
+                info("Skipping {} as it's already upoaded", f)
+            } else {
+                info("Uploading {}", f)
+            }
+        });
         //COPY
         //authenticate with iBroadcast & get token
         //get checksums of existing files (single call)

@@ -81,7 +81,7 @@ public class IBroadcast {
         def payload = JsonOutput.prettyPrint(builder.toString())
         sendRequest(IBROADCAST_ALBUMS_URL, payload, 
             {result -> 
-                info("Retrieved album listing {}")
+                info("Retrieved album listing")
                 return result 
             },
             {result ->
@@ -107,8 +107,8 @@ public class IBroadcast {
         def url = IBROADCAST_MD5_URL + "?user_id=${userId}&token=${userToken}"
         sendRequest(url, payload, 
             {result -> 
-                info("Retrieved track checksums {}", result)
-                return result 
+                info("Retrieved track checksums")
+                return result.md5 
             },
             {result ->
                 error("Couldn't retrieve track checksums  from iBroadcast: {}", result)

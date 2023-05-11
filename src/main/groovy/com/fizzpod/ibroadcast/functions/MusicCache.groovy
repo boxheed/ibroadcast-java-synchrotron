@@ -6,7 +6,7 @@ import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 import com.fizzpod.ibroadcast.MusicFile
 
-public class LocalCache {
+public class MusicCache {
 
     private DB db;
     private ConcurrentMap map;

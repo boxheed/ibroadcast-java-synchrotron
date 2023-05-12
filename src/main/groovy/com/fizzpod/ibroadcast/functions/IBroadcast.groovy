@@ -112,7 +112,7 @@ public class IBroadcast {
                 return result.md5 
             },
             {result ->
-                error("Couldn't retrieve track checksums  from iBroadcast: {}", result)
+                error("Couldn't retrieve track checksums from iBroadcast: {}", result)
                 throw new RuntimeException()
             }
         )
@@ -140,10 +140,16 @@ public class IBroadcast {
             .build();
         try (Response response = okclient.newCall(request).execute()) {
             String content = response.body().string()
-            info("Upload result: {}, {}", response.code, content)
-            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-
-            
+            def jsonSlurper = new JsonSlurper()
+            def object = jsonSlurper.parseText(content)
+            debug("Received response with code {} from iBroadcast", response.code)
+            //TODO object.result may not be correct
+            if(response.code != 200 || !object.result)  {
+                error("Couldn't upload track to iBroadcast: {}", object)
+                throw new RuntimeException()
+            } else {
+                info("Upload result: {}, {}", response.code, object.message)
+            }
         }
 
         return null

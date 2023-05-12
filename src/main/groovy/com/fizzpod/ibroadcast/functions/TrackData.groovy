@@ -12,7 +12,7 @@ public class TrackData {
         def data = [:]
         data.put("path", track.getAbsolutePath())
         data.put("modified", track.lastModified())
-        data + TrackTagReader.parse(track)
+        data.tags = TrackTagReader.parse(track)
         String fileChecksum = Files.hash(track, Hashing.md5()).toString();
         data.put("checksum", fileChecksum)
         info("Track Data: {}", data)

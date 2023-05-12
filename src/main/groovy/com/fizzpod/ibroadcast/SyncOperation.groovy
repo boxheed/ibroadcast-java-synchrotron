@@ -12,15 +12,18 @@ public class SyncOperation {
         def tracks = IBroadcast.listTracks(credentials)
         def albums = IBroadcast.listAlbums(credentials)
         def checksums = IBroadcast.getMusicChecksums(credentials)
-        info(checksums)
         LocalMusic.scan(options.i, { f ->
             info("Processing {} ", f);
             def data = TrackData.read(f);
-            if(checksums.contains(data.checksum)) {
+            if(checksums.contains(data.MD5)) {
                 info("Skipping {} as it's already upoaded", f)
             } else {
-                info("Uploading {}", f)
-                IBroadcast.upload(credentials, f)
+                if(options.d) {
+                    info("Dry run, not uploading file {}", f)
+                } else {
+                    info("Uploading {}", f)
+                    IBroadcast.upload(credentials, f)
+                }
             }
         });
         //COPY

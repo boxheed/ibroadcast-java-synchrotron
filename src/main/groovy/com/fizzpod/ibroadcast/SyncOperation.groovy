@@ -8,10 +8,6 @@ public class SyncOperation {
 
     public static def run(def options) {
         info("Starting sync operation")
-        createPipeline(options)
-    }
-
-    private static def createPipeline(def options) {
         def credentials = IBroadcast.auth(options.u, options.p)
         def tracks = IBroadcast.listTracks(credentials)
         def albums = IBroadcast.listAlbums(credentials)
@@ -24,6 +20,7 @@ public class SyncOperation {
                 info("Skipping {} as it's already upoaded", f)
             } else {
                 info("Uploading {}", f)
+                IBroadcast.upload(credentials, f)
             }
         });
         //COPY

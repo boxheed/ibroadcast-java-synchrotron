@@ -13,6 +13,7 @@ public class IBroadcast {
     public static final String IBROADCAST_TRACKS_URL = 'https://library.ibroadcast.com'
     public static final String IBROADCAST_ALBUMS_URL = 'https://library.ibroadcast.com/albums'
     public static final String IBROADCAST_MD5_URL = 'https://sync.ibroadcast.com'
+    public static final String IBROADCAST_UPLOAD_URL = 'https://sync.ibroadcast.com'
 
     public static final String CLIENT_VERSION = "0.1"
     public static final String CLIENT_NAME = 'ibroadcast-sync-client'
@@ -117,7 +118,34 @@ public class IBroadcast {
         )
     }
 
-    public static def upload() {
+    public static def upload(def credentials, def track) {
+        OkHttpClient okclient = new OkHttpClient()
+            .newBuilder()
+            .build();
+        String contentType = URLConnection.guessContentTypeFromName(track.getName())
+        String fileName = track.getName()
+        RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("file", fileName,
+                RequestBody.create(MediaType.parse(contentType), track))
+            .addFormDataPart("file_path", track.getPath())
+            .addFormDataPart("method", CLIENT_NAME)
+            .addFormDataPart("user_id", credentials.userId)
+            .addFormDataPart("token", credentials.userToken)
+            .build();
+
+        Request request = new Request.Builder()
+            .url(IBROADCAST_UPLOAD_URL)
+            .post(requestBody)
+            .build();
+        try (Response response = okclient.newCall(request).execute()) {
+            String content = response.body().string()
+            info("Upload result: {}, {}", response.code, content)
+            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+            
+        }
+
         return null
     }
 

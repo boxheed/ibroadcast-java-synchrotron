@@ -4,7 +4,6 @@ import org.mapdb.DB
 import java.util.concurrent.ConcurrentMap
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
-import com.fizzpod.ibroadcast.MusicFile
 
 public class MusicCache {
 
@@ -17,17 +16,16 @@ public class MusicCache {
         map = db.hashMap("map").createOrOpen();
     }
 
-    public MusicFile get(String path) {
+    public def get(String path) {
         def data = map.get(path)
-        MusicFile musicFile = null;
+        def musicFile = null;
         if(data != null) {
-            def map = jsonSlurper.parseText(data)
-            musicFile = new MusicFile(map)
+            data = jsonSlurper.parseText(data)
         }
-        return musicFile;
+        return data;
     }
 
-    public def put(MusicFile musicFile) {
+    public def put(def musicFile) {
         def json = JsonOutput.toJson(musicFile)
         map.put(musicFile.path, json)
     }

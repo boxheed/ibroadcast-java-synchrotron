@@ -15,7 +15,7 @@ public class SyncOperation {
         LocalMusic.scan(options.i, { f ->
             info("Processing {} ", f);
             def data = TrackData.read(f);
-            if(checksums.contains(data.MD5)) {
+            if(checksums.contains(data.checksum)) {
                 info("Skipping {} as it's already upoaded", f)
             } else {
                 if(options.d) {

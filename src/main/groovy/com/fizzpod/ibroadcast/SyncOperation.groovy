@@ -16,20 +16,29 @@ public class SyncOperation {
             info("Processing {} ", f);
             def data = TrackData.read(f);
             localMusicData.put(data.key, data)
-            if(checksums.contains(data.checksum)) {
-                info("Skipping {} as it's already upoaded", f)
-            } else {
-                if(options.d) {
-                    info("Dry run, not uploading file {}", f)
+            if(options.s || options.c) {
+                if(checksums.contains(data.checksum)) {
+                    info("Skipping {} as it's already upoaded", f)
                 } else {
-                    info("Uploading {}", f)
-                    IBroadcast.upload(credentials, f)
+                    if(options.d) {
+                        info("Dry run, not uploading file {}", f)
+                    } else {
+                        info("Uploading {}", f)
+                        IBroadcast.upload(credentials, f)
+                    }
                 }
             }
             ibroadcastLibrary.remove(data.key)
         })
-        ibroadcastLibrary.each { key, value ->
-            info("Trashing {}", key)
+        if(options.s) {
+            ibroadcastLibrary.each { key, value ->
+                if(options.d) {
+                    info("Dry run, not trashing file {}", key)
+                } else {
+                    info("Trashing {}", key)
+                    IBroadcast.trash(credentials, value.id)
+                }
+            }
         }
         //COPY
         //authenticate with iBroadcast & get token

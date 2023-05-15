@@ -14,6 +14,7 @@ public class IBroadcast {
     public static final String IBROADCAST_ALBUMS_URL = 'https://library.ibroadcast.com/albums'
     public static final String IBROADCAST_MD5_URL = 'https://sync.ibroadcast.com'
     public static final String IBROADCAST_UPLOAD_URL = 'https://sync.ibroadcast.com'
+    public static final String IBROADCAST_TRASH_URL = 'https://api.ibroadcast.com/s/API/trash'
 
     public static final String CLIENT_VERSION = "0.1"
     public static final String CLIENT_NAME = 'ibroadcast-sync-client'
@@ -155,8 +156,32 @@ public class IBroadcast {
         return null
     }
 
-    public static def trash() {
-        return null
+    public static def trash(def credentials, def trackId) {
+        JsonBuilder builder = new JsonBuilder()
+        def trackArray = [trackId as Integer]
+        builder {
+            user_id credentials.userId
+            token credentials.userToken
+            mode 'trash'
+            tracks trackArray
+            version CLIENT_VERSION
+            client CLIENT_NAME
+            supported_types CLIENT_TYPES
+        }
+        def payload = JsonOutput.prettyPrint(builder.toString())
+
+        sendRequest(IBROADCAST_TRASH_URL, payload, 
+            {result -> 
+                info("Trashed track")
+                return result 
+            },
+            {result ->
+                error("Couldn't trash tack: {}", result)
+                throw new RuntimeException()
+            }
+        )
+
+        return true
     }
 
     public static final def sendRequest(def url, def payload, Closure success, Closure error) {
@@ -186,10 +211,8 @@ public class IBroadcast {
         }
     }
 
-    
-
     public static def library(def credentials) {
-        def ibroadcast = IBroadcast.listTracks(credentials)
+        def ibroadcast = listTracks(credentials)
         return IBroadcastLibraryParser.parseTracks(ibroadcast.library)
     }
 

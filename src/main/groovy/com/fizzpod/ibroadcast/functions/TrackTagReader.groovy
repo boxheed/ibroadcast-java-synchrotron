@@ -33,6 +33,15 @@ public class TrackTagReader {
             tags.put(FieldKey.COMPOSER.toString(), composer);
             String genre = tag.getFirst(FieldKey.GENRE);
             tags.put(FieldKey.GENRE.toString(), genre);
+            String track = tag.getFirst(FieldKey.TRACK);
+            tags.put(FieldKey.TRACK.toString(), track);
+            String trackTotal = tag.getFirst(FieldKey.TRACK_TOTAL);
+            tags.put(FieldKey.TRACK_TOTAL.toString(), trackTotal);
+            String discNo = tag.getFirst(FieldKey.DISC_NO);
+            tags.put(FieldKey.DISC_NO.toString(), discNo);
+            String discTotal = tag.getFirst(FieldKey.DISC_TOTAL);
+            tags.put(FieldKey.DISC_TOTAL.toString(), discTotal);
+            
         } catch (CannotReadException | IOException | TagException | ReadOnlyFileException
                 | InvalidAudioFrameException e) {
             error("Could not read file {}, received error {}", file, e.getMessage())

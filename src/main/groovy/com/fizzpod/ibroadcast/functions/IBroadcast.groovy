@@ -186,4 +186,11 @@ public class IBroadcast {
         }
     }
 
+    
+
+    public static def library(def credentials) {
+        def ibroadcast = IBroadcast.listTracks(credentials)
+        return IBroadcastLibraryParser.parseTracks(ibroadcast.library)
+    }
+
 }

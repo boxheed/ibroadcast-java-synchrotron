@@ -9,9 +9,11 @@ public class SyncOperation {
     public static def run(def options) {
         info("Starting sync operation")
         def credentials = IBroadcast.auth(options.u, options.p)
-        def tracks = IBroadcast.listTracks(credentials)
-        def albums = IBroadcast.listAlbums(credentials)
+        def ibroadcastLibrary = IBroadcast.library(credentials)
+        //def tracks = IBroadcast.listTracks(credentials)
+        //def albums = IBroadcast.listAlbums(credentials)
         def checksums = IBroadcast.getMusicChecksums(credentials)
+        def localMusicData = null
         LocalMusic.scan(options.i, { f ->
             info("Processing {} ", f);
             def data = TrackData.read(f);
@@ -25,7 +27,8 @@ public class SyncOperation {
                     IBroadcast.upload(credentials, f)
                 }
             }
-        });
+        })
+        
         //COPY
         //authenticate with iBroadcast & get token
         //get checksums of existing files (single call)

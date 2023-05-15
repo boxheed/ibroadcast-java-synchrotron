@@ -13,6 +13,8 @@ public class TrackData {
         data.put("path", track.getAbsolutePath())
         data.put("modified", track.lastModified())
         data.tags = TrackTagReader.parse(track)
+
+        //data.key = data.tags[].number + track.title + track.album + track.artist
         String fileChecksum = Files.hash(track, Hashing.md5()).toString();
         data.put("checksum", fileChecksum)
         info("Track Data: {}", data)

@@ -10,13 +10,12 @@ public class SyncOperation {
         info("Starting sync operation")
         def credentials = IBroadcast.auth(options.u, options.p)
         def ibroadcastLibrary = IBroadcast.library(credentials)
-        //def tracks = IBroadcast.listTracks(credentials)
-        //def albums = IBroadcast.listAlbums(credentials)
         def checksums = IBroadcast.getMusicChecksums(credentials)
-        def localMusicData = null
+        def localMusicData = [:]
         LocalMusic.scan(options.i, { f ->
             info("Processing {} ", f);
             def data = TrackData.read(f);
+            localMusicData.put(data.key, data)
             if(checksums.contains(data.checksum)) {
                 info("Skipping {} as it's already upoaded", f)
             } else {
@@ -27,8 +26,11 @@ public class SyncOperation {
                     IBroadcast.upload(credentials, f)
                 }
             }
+            ibroadcastLibrary.remove(data.key)
         })
-        
+        ibroadcastLibrary.each { key, value ->
+            info("Trashing {}", key)
+        }
         //COPY
         //authenticate with iBroadcast & get token
         //get checksums of existing files (single call)

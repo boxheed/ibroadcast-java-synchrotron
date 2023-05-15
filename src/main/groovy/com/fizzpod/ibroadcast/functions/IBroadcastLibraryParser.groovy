@@ -123,11 +123,12 @@ public class IBroadcastLibraryParser {
                 track.artistId = val[trackArtistIdIndex]
                 track.artist = artists[track.artistId]
                 track.number = val[trackNumberIndex]
-                track.key = track.number + track.title + track.album + track.artist
+                track.key = track.album + " " + track.artist + " " + track.number + " " + track.title
                 info(track)
                 tracks.put(track.key, track)
             }
         }
+        return tracks
 
     }
 

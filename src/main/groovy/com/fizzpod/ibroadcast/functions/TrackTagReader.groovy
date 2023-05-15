@@ -18,29 +18,29 @@ import org.jaudiotagger.tag.TagException
 public class TrackTagReader {
 
     public static final def parse(def file) {
-        def tags = [:];
+        def tags = [:]
         try {
-            AudioFile f = AudioFileIO.read(file);
-            Tag tag = f.getTag();
-            AudioHeader audioHeader = f.getAudioHeader();
-            String artist = tag.getFirst(FieldKey.ARTIST);
-            tags.put(FieldKey.ARTIST.toString(), artist);
-            String album = tag.getFirst(FieldKey.ALBUM);
-            tags.put(FieldKey.ALBUM.toString(), album);
-            String title = tag.getFirst(FieldKey.TITLE);
-            tags.put(FieldKey.TITLE.toString(), title);
-            String composer = tag.getFirst(FieldKey.COMPOSER);
-            tags.put(FieldKey.COMPOSER.toString(), composer);
-            String genre = tag.getFirst(FieldKey.GENRE);
-            tags.put(FieldKey.GENRE.toString(), genre);
-            String track = tag.getFirst(FieldKey.TRACK);
-            tags.put(FieldKey.TRACK.toString(), track);
-            String trackTotal = tag.getFirst(FieldKey.TRACK_TOTAL);
-            tags.put(FieldKey.TRACK_TOTAL.toString(), trackTotal);
-            String discNo = tag.getFirst(FieldKey.DISC_NO);
-            tags.put(FieldKey.DISC_NO.toString(), discNo);
-            String discTotal = tag.getFirst(FieldKey.DISC_TOTAL);
-            tags.put(FieldKey.DISC_TOTAL.toString(), discTotal);
+            AudioFile f = AudioFileIO.read(file)
+            Tag tag = f.getTag()
+            AudioHeader audioHeader = f.getAudioHeader()
+            String artist = tag.getFirst(FieldKey.ARTIST)
+            tags.artist = artist
+            String album = tag.getFirst(FieldKey.ALBUM)
+            tags.album = album
+            String title = tag.getFirst(FieldKey.TITLE)
+            tags.title=  title
+            String composer = tag.getFirst(FieldKey.COMPOSER)
+            tags.composer = composer
+            String genre = tag.getFirst(FieldKey.GENRE)
+            tags.genre = genre
+            String track = tag.getFirst(FieldKey.TRACK)
+            tags.number = track
+//            String trackTotal = tag.getFirst(FieldKey.TRACK_TOTAL);
+//            tags.put(FieldKey.TRACK_TOTAL.toString(), trackTotal);
+            String disc = tag.getFirst(FieldKey.DISC_NO)
+            tags.disc = disc
+//            String discTotal = tag.getFirst(FieldKey.DISC_TOTAL);
+//            tags.put(FieldKey.DISC_TOTAL.toString(), discTotal);
             
         } catch (CannotReadException | IOException | TagException | ReadOnlyFileException
                 | InvalidAudioFrameException e) {

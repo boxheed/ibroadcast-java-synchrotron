@@ -7,19 +7,19 @@ import com.google.common.io.*
 
 public class TrackData {
 
-    public static final def read(File track) {
-        info("Reading file {}", track.getName())
-        def data = [:]
-        data.put("path", track.getAbsolutePath())
-        data.put("modified", track.lastModified())
-        data.tags = TrackTagReader.parse(track)
+    public static final def read(File trackFile) {
+        info("Reading file {}", trackFile.getName())
+        def track = [:]
+        track = track + TrackTagReader.parse(trackFile)
+        track.path = trackFile.getAbsolutePath()
+        track.modified = trackFile.lastModified()
+        String fileChecksum = Files.hash(trackFile, Hashing.md5()).toString();
+        track.checksum = fileChecksum
 
-        //data.key = data.tags[].number + track.title + track.album + track.artist
-        String fileChecksum = Files.hash(track, Hashing.md5()).toString();
-        data.put("checksum", fileChecksum)
-        info("Track Data: {}", data)
-
-        return data;
+        //TODO should create this with a KeyMaker
+        track.key = track.album + " " + track.artist + " " + track.number + " " + track.title
+        info("Track: {}", track)
+        return track;
     }
 
 }

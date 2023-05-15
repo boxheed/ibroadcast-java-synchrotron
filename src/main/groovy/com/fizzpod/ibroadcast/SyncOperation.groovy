@@ -7,7 +7,8 @@ import com.fizzpod.ibroadcast.functions.*;
 public class SyncOperation {
 
     public static def run(def options) {
-        info("Starting sync operation")
+        def stats = [upload:0, skip:0, trash: 0]
+        info("Starting operation")
         def credentials = IBroadcast.auth(options.u, options.p)
         def ibroadcastLibrary = IBroadcast.library(credentials)
         def checksums = IBroadcast.getMusicChecksums(credentials)
@@ -18,12 +19,12 @@ public class SyncOperation {
             localMusicData.put(data.key, data)
             if(options.s || options.c) {
                 if(checksums.contains(data.checksum)) {
-                    info("Skipping {} as it's already upoaded", f)
+                    info("Skipping {}", f)
+                    stats.skip++
                 } else {
-                    if(options.d) {
-                        info("Dry run, not uploading file {}", f)
-                    } else {
-                        info("Uploading {}", f)
+                    info("Uploading {}", f)
+                    stats.upload++
+                    if(!options.d) {
                         IBroadcast.upload(credentials, f)
                     }
                 }
@@ -32,14 +33,14 @@ public class SyncOperation {
         })
         if(options.s) {
             ibroadcastLibrary.each { key, value ->
-                if(options.d) {
-                    info("Dry run, not trashing file {}", key)
-                } else {
-                    info("Trashing {}", key)
+                info("Trashing {}", key)
+                stats.trash++
+                if(!options.d) {
                     IBroadcast.trash(credentials, value.id)
                 }
             }
         }
+        info("Finished {}", stats)
         //COPY
         //authenticate with iBroadcast & get token
         //get checksums of existing files (single call)

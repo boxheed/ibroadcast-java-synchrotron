@@ -8,17 +8,17 @@ import com.google.common.io.*
 public class TrackData {
 
     public static final def read(File trackFile) {
-        info("Reading file {}", trackFile.getName())
+        info("reading {}", trackFile)
         def track = [:]
         track = track + TrackTagReader.parse(trackFile)
-        track.path = trackFile.getAbsolutePath()
+        track.file = trackFile
         track.modified = trackFile.lastModified()
         String fileChecksum = Files.hash(trackFile, Hashing.md5()).toString();
         track.checksum = fileChecksum
 
         //TODO should create this with a KeyMaker
         track.key = track.album + " " + track.artist + " " + track.number + " " + track.title
-        info("Track: {}", track)
+        info("track {}", track)
         return track;
     }
 

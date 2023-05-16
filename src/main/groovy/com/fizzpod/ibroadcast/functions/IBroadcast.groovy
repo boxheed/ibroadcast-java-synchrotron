@@ -93,7 +93,7 @@ public class IBroadcast {
         )
     }
 
-    public static def getMusicChecksums(def credentials) {
+    public static def checksums(def credentials) {
         JsonBuilder builder = new JsonBuilder()
         builder {
             mode 'status'

@@ -98,9 +98,9 @@ public class IBroadcastLibraryParser {
     public static def parseTracks(def library) {
 
         def albums = parseAlbums(library.albums)
-        info("Albums: {}", albums)
+        debug("Albums: {}", albums)
         def artists = parseArtists(library.artists)
-        info("Artists: {}", artists)
+        debug("Artists: {}", artists)
         def tracks = parseTracks(library.tracks, albums, artists)
         return tracks
     }
@@ -124,7 +124,7 @@ public class IBroadcastLibraryParser {
                 track.artist = artists[track.artistId]
                 track.number = val[trackNumberIndex]
                 track.key = track.album + " " + track.artist + " " + track.number + " " + track.title
-                info(track)
+                debug("Track: {}", track)
                 tracks.put(track.key, track)
             }
         }
@@ -133,7 +133,7 @@ public class IBroadcastLibraryParser {
     }
 
     public static def parseAlbums(def data) {
-        
+        debug("Parsing Albums")
         //parse the albums
         def albumMap = data.map
         def albums = [:]

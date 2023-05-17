@@ -20,6 +20,8 @@ apply plugin: 'com.fizzpod.pater-build'
 apply plugin: 'groovy'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+
 
 tasks.named("bootJar") {
 	mainClass = 'com.fizzpod.ibroadcast.Main'
@@ -27,6 +29,11 @@ tasks.named("bootJar") {
 
 tasks.named("bootJar") {
 	launchScript()
+}
+
+
+application {
+	applicationName = "ibsync"
 }
 
 artifacts {

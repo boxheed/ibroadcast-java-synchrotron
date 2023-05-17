@@ -29,6 +29,10 @@ tasks.named("bootJar") {
 	launchScript()
 }
 
+artifacts {
+    tasks.named("bootJar")
+}
+
 dependencies {
 	implementation 'org.apache.groovy:groovy-all:4.0.12'
 	implementation 'org.apache.groovy:groovy-contracts:4.0.12'

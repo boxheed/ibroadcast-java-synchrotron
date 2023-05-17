@@ -38,7 +38,7 @@ dependencies {
 	implementation 'org.apache.groovy:groovy-contracts:4.0.12'
 
 	implementation 'org.tinylog:tinylog-api:2.6.1'
-	implementation 'org.tinylog:tinylog-impl:2.6.1'
+	implementation 'org.tinylog:tinylog-impl:2.6.2'
 	implementation 'org.mapdb:mapdb:3.0.9'
 	implementation 'com.squareup.okhttp3:okhttp:4.11.0'
 	implementation 'net.jthink:jaudiotagger:3.0.1'

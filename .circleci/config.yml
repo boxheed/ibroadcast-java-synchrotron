@@ -70,7 +70,15 @@ jobs:
       - checkout
       - run: ./gradlew clean verifyRelease -Prelease.disableRemoteCheck
       - run: ./gradlew build
+      - run: ./gradlew bootDistTar
+      - run: ./gradlew bootDistZip
       - run: ./gradlew publish
+      - store_artifacts:
+          path: ./build/distributions
+      - store_artifacts:
+          path: ./build/libs
+
+
 
 workflows:
   build:

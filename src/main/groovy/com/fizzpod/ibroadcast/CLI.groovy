@@ -9,9 +9,14 @@ public class CLI {
         cli.i(type:File, longOpt:'input', args:1, argName:'inputFolder', 'The folder containing the music library to synchronise', required: true)
         cli.s(longOpt:'send', 'Sends any missing or updated music from the local filesystem to iBroadcast')
         cli.c(longOpt:'clean', 'Moves tracks on iBroadcast to the trash folder that are not stored locally')
-        cli.u(longOpt:'user', args:1, argName:'user', 'Your ibroadcast username')
         cli.p(longOpt:'password', args:1, argName:'password', 'Your ibroadcast password')
+        cli.u(longOpt:'user', args:1, argName:'user', 'Your ibroadcast username')
         cli.d(longOpt:'dry', 'Performs a dry-run, does not make any changes')
+        cli.b(longOpt: 'database', 
+            args:1, 
+            argName:'database', 
+            'Directory for storing the database file', 
+            defaultValue: System.getProperty("java.io.tmpdir"))
         return cli
 
     }.call()

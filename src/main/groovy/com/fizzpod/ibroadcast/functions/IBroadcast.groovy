@@ -22,7 +22,7 @@ public class IBroadcast {
 
 
     @Requires({'iBroadcast: username and password must be specified' && !isNullOrEmpty(username) && !isNullOrEmpty(pass) })
-    public static final def auth(String username, String pass) {
+    public static final def auth(def username, def pass) {
         JsonBuilder builder = new JsonBuilder()
         builder {
             mode 'status'

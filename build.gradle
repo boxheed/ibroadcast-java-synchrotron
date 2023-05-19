@@ -13,6 +13,7 @@ buildscript {
 		classpath 'com.fizzpod:gradle-java-opinion:0.14.3'
 		classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
 		classpath "org.springframework.boot:spring-boot-gradle-plugin:2.7.11"
+		classpath "com.github.breadmoirai:github-release:2.4.1"
   	}
 }
 
@@ -21,6 +22,7 @@ apply plugin: 'groovy'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'application'
+apply plugin: 'com.github.breadmoirai.github-release'
 
 
 tasks.named("bootJar") {
@@ -50,4 +52,13 @@ dependencies {
 	implementation 'com.squareup.okhttp3:okhttp:4.11.0'
 	implementation 'net.jthink:jaudiotagger:3.0.1'
 
+}
+
+githubRelease {
+    token project.hasProperty("github_release_token")? github_release_token: ""
+    owner "boxheed" 
+    targetCommitish "main" 
+    generateReleaseNotes true 
+    draft true 
+    //releaseAssets jar.destinationDir.listFiles // this points to which files you want to upload as assets with your release, by default this is empty
 }

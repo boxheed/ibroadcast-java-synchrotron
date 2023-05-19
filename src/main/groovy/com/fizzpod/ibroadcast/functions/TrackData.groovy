@@ -21,7 +21,7 @@ public class TrackData {
     public static final def read(File trackFile) {
         info("reading {}", trackFile)
         def track = cache.get(trackFile.getAbsolutePath())
-        if(track != null && trackFile.lastModified() != track.modified) {
+        if(track != null && trackFile.lastModified() == track.modified) {
             info("Loaded track from cache {}", track)
         } else {
             track = [:]

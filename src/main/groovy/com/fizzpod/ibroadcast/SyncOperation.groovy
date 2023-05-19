@@ -28,13 +28,14 @@ public class SyncOperation {
         context.libraries.checksums = IBroadcast.checksums(context.credentials)
         ThreadContext.put("mode", "scan")
 
+        TrackData.init(new File(options.b))
         LocalMusic.scan(options.i, { f ->
             info("{} ", f);
             def data = TrackData.read(f);
             context.libraries.local.put(data.key, data)
             context.libraries.remote.remove(data.key)
         })
-
+        TrackData.close()
         if(options.s) {
             ThreadContext.put("mode", "send")
             context.libraries.local.each { key, track ->

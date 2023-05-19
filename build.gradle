@@ -57,6 +57,7 @@ dependencies {
 githubRelease {
     token project.hasProperty("github_release_token")? github_release_token: ""
 	tagName 'release-' + project.version
+	releaseName 'Release ' + project.version
     owner "boxheed" 
     targetCommitish "main" 
     generateReleaseNotes true 

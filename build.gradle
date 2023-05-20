@@ -62,5 +62,11 @@ githubRelease {
     targetCommitish "main" 
     generateReleaseNotes true 
     draft true 
-    //releaseAssets jar.destinationDir.listFiles // this points to which files you want to upload as assets with your release, by default this is empty
+	dryRun false
+    releaseAssets { ->
+		jar.outputs.files +
+		bootJar.outputs.files +
+		bootDistZip.outputs.files +
+		bootDistTar.outputs.files
+	}
 }

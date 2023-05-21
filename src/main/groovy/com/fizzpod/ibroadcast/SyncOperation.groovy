@@ -54,14 +54,17 @@ public class SyncOperation {
 
         if(options.c) {
             ThreadContext.put("mode", "clean");
+            def trashTracks = []
             context.libraries.remote.each { key, value ->
-                info("cleaning {}", key)
-                if(!options.d) {
-                    IBroadcast.trash(context.credentials, value.id)
-                }
+                info("Sending {} to trash", key)
+                trashTracks << value.id as Integer
                 context.stats.cleaned++
             }
+            if(!options.d && trashTracks.length > 0) {
+                IBroadcast.trash(context.credentials, trashTracks)
+            }
         }
+
         info("finished {}", context.stats)
         //COPY
         //authenticate with iBroadcast & get token

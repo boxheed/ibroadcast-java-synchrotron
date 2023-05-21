@@ -156,14 +156,13 @@ public class IBroadcast {
         return null
     }
 
-    public static def trash(def credentials, def trackId) {
+    public static def trash(def credentials, def trackIds) {
         JsonBuilder builder = new JsonBuilder()
-        def trackArray = [trackId as Integer]
         builder {
             user_id credentials.userId
             token credentials.userToken
             mode 'trash'
-            tracks trackArray
+            tracks trackIds
             version CLIENT_VERSION
             client CLIENT_NAME
             supported_types CLIENT_TYPES
@@ -172,11 +171,11 @@ public class IBroadcast {
 
         sendRequest(IBROADCAST_TRASH_URL, payload, 
             {result -> 
-                info("Trashed track")
+                info("Trashed tracks")
                 return result 
             },
             {result ->
-                error("Couldn't trash tack: {}", result)
+                error("Couldn't trash tracks: {}", result)
                 throw new RuntimeException()
             }
         )
@@ -204,6 +203,7 @@ public class IBroadcast {
             debug("Received response with code {} from iBroadcast", response.code)
             //TODO object.result may not be correct
             if(response.code != 200 || !object.result)  {
+                error("Request rejected code: {}, message: {}", response.code, object)
                 return error(object)
             } else {
                 return success(object)

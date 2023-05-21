@@ -57,7 +57,7 @@ public class SyncOperation {
             context.libraries.remote.each { key, value ->
                 info("cleaning {}", key)
                 if(!options.d) {
-                    IBroadcast.trash(credentials, value.id)
+                    IBroadcast.trash(context.credentials, value.id)
                 }
                 context.stats.cleaned++
             }

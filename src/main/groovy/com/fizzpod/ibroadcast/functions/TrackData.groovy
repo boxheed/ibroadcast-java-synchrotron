@@ -22,8 +22,9 @@ public class TrackData {
         info("reading {}", trackFile)
         def track = cache.get(trackFile.getAbsolutePath())
         if(track != null && trackFile.lastModified() == track.modified) {
-            info("Loaded track from cache {}", track)
+            debug("Loaded track from cache {}", track)
         } else {
+            debug("Parsing track")
             track = [:]
             track = track + TrackTagReader.parse(trackFile)
             track.file = trackFile
@@ -34,7 +35,7 @@ public class TrackData {
 
             //TODO should create this with a KeyMaker
             track.key = track.album + " " + track.artist + " " + track.number + " " + track.title
-            info("track {}", track)
+            debug("track {}", track)
             cache.put(track)
         }
         return track;

@@ -34,6 +34,7 @@ public class TrackDataCache {
             info("Cache Hit for {}", path)
             info("Cache data {}", data)
             data = jsonSlurper.parseText(data)
+            data.file = new File(path)
         } else {
             info("Cache Miss for {}", path)
         }

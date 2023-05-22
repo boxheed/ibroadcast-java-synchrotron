@@ -57,7 +57,7 @@ public class SyncOperation {
             def trashTracks = []
             context.libraries.remote.each { key, value ->
                 info("Sending {} to trash", key)
-                trashTracks << value.id as Integer
+                trashTracks << (value.id as Integer)
                 context.stats.cleaned++
             }
             if(!options.d && trashTracks.length > 0) {

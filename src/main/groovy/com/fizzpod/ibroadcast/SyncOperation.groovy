@@ -60,7 +60,7 @@ public class SyncOperation {
                 trashTracks << (value.id as Integer)
                 context.stats.cleaned++
             }
-            if(!options.d && trashTracks.length > 0) {
+            if(!options.d && trashTracks.size() > 0) {
                 IBroadcast.trash(context.credentials, trashTracks)
             }
         }

@@ -10,7 +10,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath 'com.fizzpod:gradle-java-opinion:0.14.3'
+		classpath 'com.fizzpod:gradle-java-opinion:0.14.8'
 		classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
 		classpath "org.springframework.boot:spring-boot-gradle-plugin:2.7.11"
 		classpath "com.github.breadmoirai:github-release:2.4.1"
@@ -43,8 +43,8 @@ artifacts {
 }
 
 dependencies {
-	implementation 'org.apache.groovy:groovy-all:4.0.12'
-	implementation 'org.apache.groovy:groovy-contracts:4.0.12'
+	implementation 'org.apache.groovy:groovy-all:4.0.13'
+	implementation 'org.apache.groovy:groovy-contracts:4.0.13'
 
 	implementation 'org.tinylog:tinylog-api:2.6.2'
 	implementation 'org.tinylog:tinylog-impl:2.6.2'

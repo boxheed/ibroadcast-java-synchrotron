@@ -10,7 +10,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath 'com.fizzpod:gradle-java-opinion:0.14.8'
+		classpath 'com.fizzpod:gradle-java-opinion:0.14.9'
 		classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
 		classpath "org.springframework.boot:spring-boot-gradle-plugin:2.7.11"
 		classpath "com.github.breadmoirai:github-release:2.4.1"

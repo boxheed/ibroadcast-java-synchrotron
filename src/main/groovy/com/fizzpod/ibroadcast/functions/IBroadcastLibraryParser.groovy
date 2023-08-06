@@ -118,11 +118,11 @@ public class IBroadcastLibraryParser {
                 def track = [:]
                 track.id = key
                 track.title = val[trackTitleIndex]
-                track.albumId = val[trackAlbumIdIndex]
+                track.albumId = val[trackAlbumIdIndex] as Integer
                 track.album = albums[track.albumId]
-                track.artistId = val[trackArtistIdIndex]
+                track.artistId = val[trackArtistIdIndex] as Integer
                 track.artist = artists[track.artistId]
-                track.number = val[trackNumberIndex]
+                track.number = val[trackNumberIndex] as Integer
                 track.key = track.album + " " + track.artist + " " + track.number + " " + track.title
                 debug("Track: {}", track)
                 tracks.put(track.key, track)

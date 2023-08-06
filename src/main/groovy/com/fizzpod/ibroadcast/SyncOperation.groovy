@@ -53,7 +53,7 @@ public class SyncOperation {
         }
 
         if(options.c) {
-            ThreadContext.put("mode", "clean");
+            ThreadContext.put("mode", "clean")
             def trashTracks = []
             context.libraries.remote.each { key, value ->
                 info("Sending {} to trash", key)

@@ -112,6 +112,7 @@ public class IBroadcastLibraryParser {
         def trackAlbumIdIndex = trackMap.album_id
         def trackArtistIdIndex = trackMap.artist_id
         def trackNumberIndex = trackMap.track
+        def pathIndex = trackMap.path
         def tracks = [:]
         data.each { key, val ->
             if(key != "map") {
@@ -123,7 +124,8 @@ public class IBroadcastLibraryParser {
                 track.artistId = val[trackArtistIdIndex] as Integer
                 track.artist = artists[track.artistId]
                 track.number = val[trackNumberIndex] as Integer
-                track.key = track.album + " " + track.artist + " " + track.number + " " + track.title
+                track.folder = val[pathIndex]
+                track.key = track.folder + " " + track.number + " " + track.title
                 debug("Track: {}", track)
                 tracks.put(track.key, track)
             }

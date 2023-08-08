@@ -28,13 +28,14 @@ public class TrackData {
             track = [:]
             track = track + TrackTagReader.parse(trackFile)
             track.file = trackFile
+            track.folder = trackFile.getParent().getAbsolutePath()
             track.path = trackFile.getAbsolutePath()
             track.modified = trackFile.lastModified()
             String fileChecksum = Files.hash(trackFile, Hashing.md5()).toString();
             track.checksum = fileChecksum
 
             //TODO should create this with a KeyMaker
-            track.key = track.album + " " + track.artist + " " + track.number + " " + track.title
+            track.key = track.folder + " " + track.number + " " + track.title
             debug("track {}", track)
             cache.put(track)
         }

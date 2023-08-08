@@ -17,6 +17,7 @@ public class CLI {
             argName:'database', 
             'Directory for storing the database file', 
             defaultValue: System.getProperty("java.io.tmpdir"))
+        cli.z(longOpt:'dump', 'Dump the data to files')
         return cli
 
     }.call()

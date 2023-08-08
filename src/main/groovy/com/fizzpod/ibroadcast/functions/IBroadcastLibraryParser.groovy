@@ -125,7 +125,7 @@ public class IBroadcastLibraryParser {
                 track.artist = artists[track.artistId]
                 track.number = val[trackNumberIndex] as Integer
                 track.folder = val[pathIndex]
-                track.key = track.album + " " + track.artist + " " + track.number + " " + track.title
+                track.key = track.folder + " " + track.number + " " + track.title
                 debug("Track: {}", track)
                 tracks.put(track.key, track)
             }

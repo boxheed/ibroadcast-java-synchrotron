@@ -35,7 +35,7 @@ public class TrackData {
             track.checksum = fileChecksum
 
             //TODO should create this with a KeyMaker
-            track.key = track.album + " " + track.artist + " " + track.number + " " + track.title
+            track.key = track.folder + " " + track.number + " " + track.title
             debug("track {}", track)
             cache.put(track)
         }

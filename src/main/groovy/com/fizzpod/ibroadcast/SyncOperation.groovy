@@ -26,6 +26,9 @@ public class SyncOperation {
         ]
         context.libraries.remote = IBroadcast.library(context.credentials)
         context.libraries.checksums = IBroadcast.checksums(context.credentials)
+
+        def remoteLibrary = new groovy.json.JsonBuilder(context.libraries.remote).toPrettyString()
+        
         ThreadContext.put("mode", "scan")
 
         TrackData.init(new File(options.b))
@@ -35,6 +38,25 @@ public class SyncOperation {
             context.libraries.local.put(data.key, data)
             context.libraries.remote.remove(data.key)
         })
+        if(options.z) {
+
+            def remoteLibraryFile = new File('remote_library.json')
+            remoteLibraryFile.write(remoteLibrary)
+
+            def localLibrary = new groovy.json.JsonBuilder(context.libraries.local).toPrettyString()
+            def localLibraryFile = new File('local_library.json')
+            localLibraryFile.write(localLibrary)
+
+            def prunedRemoteLibrary = new groovy.json.JsonBuilder(context.libraries.remote).toPrettyString()
+            def prunedRemoteLibraryFile = new File('pruned_remote_library.json')
+            prunedRemoteLibraryFile.write(prunedRemoteLibrary)
+
+            def checksums = new groovy.json.JsonBuilder(context.libraries.checksums).toPrettyString()
+            def checksumsFile = new File('checksums.json')
+            checksumsFile.write(checksums)
+
+        }
+
         TrackData.close()
         if(options.s) {
             ThreadContext.put("mode", "send")

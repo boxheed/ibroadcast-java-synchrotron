@@ -5,6 +5,8 @@ import static org.tinylog.Logger.*;
 import org.tinylog.*
 import com.fizzpod.ibroadcast.functions.*;
 
+import groovy.json.JsonOutput
+
 
 public class SyncOperation {
 
@@ -27,7 +29,7 @@ public class SyncOperation {
         context.libraries.remote = IBroadcast.library(context.credentials)
         context.libraries.checksums = IBroadcast.checksums(context.credentials)
 
-        def remoteLibrary = new groovy.json.JsonBuilder(context.libraries.remote).toPrettyString()
+        def remoteLibrary = JsonOutput.toJson(context.libraries.remote)
         
         ThreadContext.put("mode", "scan")
 
@@ -39,22 +41,25 @@ public class SyncOperation {
             context.libraries.remote.remove(data.key)
         })
         if(options.z) {
-
+            info("Dumping data to files")
             def remoteLibraryFile = new File('remote_library.json')
+            info("Writing {}", remoteLibraryFile)
             remoteLibraryFile.write(remoteLibrary)
 
-            def localLibrary = new groovy.json.JsonBuilder(context.libraries.local).toPrettyString()
+            def localLibrary = JsonOutput.toJson(context.libraries.local)
             def localLibraryFile = new File('local_library.json')
+            info("Writing {}", localLibraryFile)
             localLibraryFile.write(localLibrary)
 
-            def prunedRemoteLibrary = new groovy.json.JsonBuilder(context.libraries.remote).toPrettyString()
+            def prunedRemoteLibrary = JsonOutput.toJson(context.libraries.remote)
             def prunedRemoteLibraryFile = new File('pruned_remote_library.json')
+            info("Writing {}", prunedRemoteLibraryFile)
             prunedRemoteLibraryFile.write(prunedRemoteLibrary)
 
-            def checksums = new groovy.json.JsonBuilder(context.libraries.checksums).toPrettyString()
+            def checksums = JsonOutput.toJson(context.libraries.checksums)
             def checksumsFile = new File('checksums.json')
+            info("Writing {}", checksumsFile)
             checksumsFile.write(checksums)
-
         }
 
         TrackData.close()

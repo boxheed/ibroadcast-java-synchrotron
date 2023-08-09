@@ -28,7 +28,7 @@ public class TrackData {
             track = [:]
             track = track + TrackTagReader.parse(trackFile)
             track.file = trackFile
-            track.folder = trackFile.getParent().getAbsolutePath()
+            track.folder = trackFile.getParentFile().getAbsolutePath()
             track.path = trackFile.getAbsolutePath()
             track.modified = trackFile.lastModified()
             String fileChecksum = Files.hash(trackFile, Hashing.md5()).toString();

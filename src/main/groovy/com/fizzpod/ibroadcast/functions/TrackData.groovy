@@ -34,8 +34,7 @@ public class TrackData {
             String fileChecksum = Files.hash(trackFile, Hashing.md5()).toString();
             track.checksum = fileChecksum
 
-            //TODO should create this with a KeyMaker
-            track.key = track.folder + " " + track.number + " " + track.title
+            track.key = TrackKey.generateKey(track)
             debug("track {}", track)
             cache.put(track)
         }

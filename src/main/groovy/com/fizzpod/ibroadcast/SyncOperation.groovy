@@ -42,22 +42,22 @@ public class SyncOperation {
         })
         if(options.z) {
             info("Dumping data to files")
-            def remoteLibraryFile = new File('remote_library.json')
+            def remoteLibraryFile = new File(options.b, 'remote_library.json')
             info("Writing {}", remoteLibraryFile)
             remoteLibraryFile.write(remoteLibrary)
 
             def localLibrary = JsonOutput.toJson(context.libraries.local)
-            def localLibraryFile = new File('local_library.json')
+            def localLibraryFile = new File(options.b, 'local_library.json')
             info("Writing {}", localLibraryFile)
             localLibraryFile.write(localLibrary)
 
             def prunedRemoteLibrary = JsonOutput.toJson(context.libraries.remote)
-            def prunedRemoteLibraryFile = new File('pruned_remote_library.json')
+            def prunedRemoteLibraryFile = new File(options.b, 'pruned_remote_library.json')
             info("Writing {}", prunedRemoteLibraryFile)
             prunedRemoteLibraryFile.write(prunedRemoteLibrary)
 
             def checksums = JsonOutput.toJson(context.libraries.checksums)
-            def checksumsFile = new File('checksums.json')
+            def checksumsFile = new File(options.b, 'checksums.json')
             info("Writing {}", checksumsFile)
             checksumsFile.write(checksums)
         }

@@ -38,6 +38,7 @@ public class TrackData {
             debug("track {}", track)
             cache.put(track)
         }
+        track.key = TrackKey.generateKey(track)
         return track;
     }
 

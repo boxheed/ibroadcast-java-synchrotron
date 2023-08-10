@@ -10,7 +10,7 @@ public class Main {
 
         if(options != null) {
             try {
-                if(options.s || options.c) {
+                if(options.s || options.c || options.z) {
                     SyncOperation.run(options)
                 } else {
                     CLI.usage()

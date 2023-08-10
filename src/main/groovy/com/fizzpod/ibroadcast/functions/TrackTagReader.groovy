@@ -35,12 +35,12 @@ public class TrackTagReader {
             tags.genre = genre
             String track = tag.getFirst(FieldKey.TRACK)
             tags.number = track
-//            String trackTotal = tag.getFirst(FieldKey.TRACK_TOTAL);
-//            tags.put(FieldKey.TRACK_TOTAL.toString(), trackTotal);
+            String trackTotal = tag.getFirst(FieldKey.TRACK_TOTAL)
+            tags.trackTotal = trackTotal
             String disc = tag.getFirst(FieldKey.DISC_NO)
             tags.disc = disc
-//            String discTotal = tag.getFirst(FieldKey.DISC_TOTAL);
-//            tags.put(FieldKey.DISC_TOTAL.toString(), discTotal);
+            String discTotal = tag.getFirst(FieldKey.DISC_TOTAL)
+            tags.discTotal = discTotal;
             
         } catch (CannotReadException | IOException | TagException | ReadOnlyFileException
                 | InvalidAudioFrameException e) {

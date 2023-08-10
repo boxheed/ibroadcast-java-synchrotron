@@ -37,8 +37,9 @@ public class SyncOperation {
         LocalMusic.scan(options.i, { f ->
             info("{} ", f);
             def data = TrackData.read(f);
+
             context.libraries.local.put(data.key, data)
-            context.libraries.remote.remove(data.key)
+//            context.libraries.remote.remove(data.key)
         })
         if(options.z) {
             info("Dumping data to files")
@@ -66,7 +67,14 @@ public class SyncOperation {
         if(options.s) {
             ThreadContext.put("mode", "send")
             context.libraries.local.each { key, track ->
-                if(context.libraries.checksums.contains(track.checksum)) {
+                boolean upload = false
+                if(!context.libraries.remote.containsKey(key)) {
+                    upload = true
+                } else if(!context.libraries.checksums.contains(track.checksum)) {
+                    upload = true
+                }
+
+                if(!upload) {
                     info("skipping {}", track.file)
                     context.stats.skipped++
                 } else {
@@ -83,9 +91,11 @@ public class SyncOperation {
             ThreadContext.put("mode", "clean")
             def trashTracks = []
             context.libraries.remote.each { key, value ->
-                info("Sending {} to trash", key)
-                trashTracks << (value.id as Integer)
-                context.stats.cleaned++
+                if(!context.libraries.local.containsKey(key)) {
+                    info("Sending {} to trash", key)
+                    trashTracks << (value.id as Integer)
+                    context.stats.cleaned++
+                }
             }
             if(!options.d && trashTracks.size() > 0) {
                 IBroadcast.trash(context.credentials, trashTracks)

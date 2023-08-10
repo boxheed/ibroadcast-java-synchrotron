@@ -14,7 +14,7 @@ public class TrackKey {
 
     public static def getFolderKey(def track) {
         def folder = FilenameUtils.separatorsToUnix(track.folder) 
-        return folder.replace("/", "_")
+        return folder.replace("/", "")
     }
 
     public static def getTrackNumber(def track) {

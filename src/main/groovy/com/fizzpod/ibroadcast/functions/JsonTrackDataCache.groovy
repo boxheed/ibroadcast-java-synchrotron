@@ -14,14 +14,17 @@ public class JsonTrackDataCache {
 
     private def tracks = [:]
     private def tracksFile = null
+    private JsonSlurper jsonSlurper = new JsonSlurper()
 
     public def open(File dbFolder) {
         debug("Initialising data cache in {} with name {}", dbFolder, DB_NAME)
         tracksFile = new File(dbFolder, DB_NAME)
         if(tracksFile.exists()) {
-            tracks = evaluate(tracksFile)
+            tracks = jsonSlurper.parseText(tracksFile.getText('UTF-8'))
         }
     }
+
+
 
     public def get(String path) {
         def data = this.tracks.get(path)

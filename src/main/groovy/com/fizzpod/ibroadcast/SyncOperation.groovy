@@ -33,7 +33,7 @@ public class SyncOperation {
         
         ThreadContext.put("mode", "scan")
 
-        TrackData.init(new File(options.b))
+        TrackData.init(new File(options.b), options.f)
         LocalMusic.scan(options.i, { f ->
             info("{} ", f);
             def data = TrackData.read(f);

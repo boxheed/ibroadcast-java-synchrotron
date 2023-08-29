@@ -92,7 +92,7 @@ public class SyncOperation {
             def trashTracks = []
             context.libraries.remote.each { key, value ->
                 if(!context.libraries.local.containsKey(key)) {
-                    info("Sending {} to trash", key)
+                    info("trashing {}", key)
                     trashTracks << (value.id as Integer)
                     context.stats.cleaned++
                 }

@@ -7,10 +7,15 @@ import com.google.common.io.*
 
 public class TrackData {
 
-    private static final TrackDataCache cache = new TrackDataCache()
+    private static def cache
 
-    public static final def init(File dataFolder) {
+    public static final def init(File dataFolder, String format) {
         info("Initialising cache in folder {}", dataFolder)
+        if(format == "binary") {
+            cache = new TrackDataCache()
+        } else {
+            cache = new JsonTrackDataCache()
+        }
         cache.open(dataFolder)
     }
 

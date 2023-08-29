@@ -31,12 +31,12 @@ public class TrackDataCache {
     public def get(String path) {
         def data = this.map.get(path)
         if(data != null) {
-            debug("Cache Hit for {}", path)
+            debug("Cache hit for {}", path)
             debug("Cache data {}", data)
             data = jsonSlurper.parseText(data)
             data.file = new File(path)
         } else {
-            debug("Cache Miss for {}", path)
+            debug("Cache miss for {}", path)
         }
         return data;
     }

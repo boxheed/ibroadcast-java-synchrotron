@@ -19,9 +19,9 @@ public class CLI {
             defaultValue: System.getProperty("java.io.tmpdir"))
         cli.f(longOpt: 'format',
             args:1,
-            arganme:'format',
+            argName:'format',
             'Format for the database, values are either binary or json',
-            defaultValue: 'binary')
+            defaultValue: "binary")
         cli.z(longOpt:'dump', 'Dump the data to files')
         return cli
 

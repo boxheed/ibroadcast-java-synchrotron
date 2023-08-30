@@ -15,6 +15,7 @@ public class JsonTrackDataCache {
     private def tracks = [:]
     private def tracksFile = null
     private JsonSlurper jsonSlurper = new JsonSlurper()
+    private int counter = 0
 
     public def open(File dbFolder) {
         debug("Initialising data cache in {} with name {}", dbFolder, DB_NAME)
@@ -23,8 +24,6 @@ public class JsonTrackDataCache {
             tracks = jsonSlurper.parseText(tracksFile.getText('UTF-8'))
         }
     }
-
-
 
     public def get(String path) {
         def data = this.tracks.get(path)
@@ -41,6 +40,10 @@ public class JsonTrackDataCache {
     public def put(def data) {
         debug("Storing {}:{}", data.path, data)
         this.tracks.put(data.path, data)
+        counter++
+        if(counter % 10 == 0) {
+            close()
+        }
     }
 
     public void close() {

@@ -22,6 +22,12 @@ public class CLI {
             argName:'format',
             'Format for the database, values are either binary or json',
             defaultValue: "json")
+        cli.g(logOpt: 'filter',
+            args:1,
+            argName:'filter',
+            //TODO improve this filter
+            'Path filter to apply to the end of the input path',
+            defaultValue: "")
         cli.z(longOpt:'dump', 'Dump the data to files')
         return cli
 

@@ -36,13 +36,13 @@ public class SyncOperation {
 
         TrackData.init(options.i, new File(options.b), options.f)
 
-
-        LocalMusic.scan(options.i, { f ->
+        File inputFolder = new File(options.i, options.g)
+        LocalMusic.scan(inputFolder, { f ->
             info("{} ", f)
-            def data = TrackData.read(f)
-            data.relative = options.i.toPath().relativize(data.file.toPath()).toString()
-            data.relative = FilenameUtils.separatorsToUnix(data.relative)
-            context.libraries.local.put(data.key, data)
+            def track = TrackData.read(f)
+            track.relative = options.i.toPath().relativize(track.file.toPath()).toString()
+            track.relative = FilenameUtils.separatorsToUnix(track.relative)
+            context.libraries.local.put(track.key, track)
 //            context.libraries.remote.remove(data.key)
         })
         if(options.z) {

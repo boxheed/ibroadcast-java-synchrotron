@@ -21,7 +21,7 @@ public class CLI {
             args:1,
             argName:'format',
             'Format for the database, values are either binary or json',
-            defaultValue: "binary")
+            defaultValue: "json")
         cli.z(longOpt:'dump', 'Dump the data to files')
         return cli
 

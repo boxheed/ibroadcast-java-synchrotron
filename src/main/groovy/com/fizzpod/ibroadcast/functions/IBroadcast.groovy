@@ -119,8 +119,8 @@ public class IBroadcast {
         )
     }
 
-    public static def upload(def credentials, def trackDate) {
-        def track = trackData.file
+    public static def upload(def credentials, def data) {
+        def track = data.file
         def trackPath = track.getPath()
 
         OkHttpClient okclient = new OkHttpClient()
@@ -132,7 +132,7 @@ public class IBroadcast {
             .setType(MultipartBody.FORM)
             .addFormDataPart("file", fileName,
                 RequestBody.create(MediaType.parse(contentType), track))
-            .addFormDataPart("file_path", trackData.relative))
+            .addFormDataPart("file_path", data.relative)
             .addFormDataPart("method", CLIENT_NAME)
             .addFormDataPart("user_id", credentials.userId)
             .addFormDataPart("token", credentials.userToken)
@@ -214,9 +214,10 @@ public class IBroadcast {
         }
     }
 
-    public static def library(def credentials) {
+    public static def library(def credentials, def inputFolder) {
         def ibroadcast = listTracks(credentials)
-        return IBroadcastLibraryParser.parseTracks(ibroadcast.library)
+        IBroadcastLibraryParser parser = new IBroadcastLibraryParser(inputFolder)
+        return parser.parseTracks(ibroadcast.library)
     }
 
 }

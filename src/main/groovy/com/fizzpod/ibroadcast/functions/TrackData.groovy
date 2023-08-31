@@ -9,7 +9,9 @@ public class TrackData {
 
     private static def cache
 
-    public static final def init(File dataFolder, String format) {
+    private static def trackKey
+
+    public static final def init(File inputFolder, File dataFolder, String format) {
         info("Initialising cache in folder {}", dataFolder)
         if(format == "binary") {
             cache = new TrackDataCache()
@@ -17,6 +19,7 @@ public class TrackData {
             cache = new JsonTrackDataCache()
         }
         cache.open(dataFolder)
+        trackKey = new TrackKey(inputFolder)
     }
 
     public static final def close(File dataFolder) {

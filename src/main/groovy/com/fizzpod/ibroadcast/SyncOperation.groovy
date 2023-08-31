@@ -37,7 +37,7 @@ public class SyncOperation {
         LocalMusic.scan(options.i, { f ->
             info("{} ", f);
             def data = TrackData.read(f);
-
+            def data.relative = options.i.toPath().relativize(data.file.toPath()).toString()
             context.libraries.local.put(data.key, data)
 //            context.libraries.remote.remove(data.key)
         })
@@ -80,7 +80,7 @@ public class SyncOperation {
                 } else {
                     info("uploading {}", track.file)
                     if(!options.d) {
-                        IBroadcast.upload(context.credentials, track.file)
+                        IBroadcast.upload(context.credentials, track)
                     }
                     context.stats.uploaded++
                 }

@@ -131,6 +131,7 @@ public class IBroadcastLibraryParser {
                 track.artist = artists[track.artistId]
                 track.number = val[trackNumberIndex] as Integer
                 track.folder = val[pathIndex]
+                track.file = new File(track.folder)
                 track.key = trackKey.generateKey(track)
                 debug("Track: {}", track)
                 tracks.put(track.key, track)

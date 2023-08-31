@@ -95,7 +95,13 @@ import groovy.contracts.*
 
 public class IBroadcastLibraryParser {
 
-    public static def parseTracks(def library) {
+    private TrackKey trackKey
+
+    public IBroadcastLibraryParser(File inputFolder) {
+        trackKey = new TrackKey(inputFolder)
+    }
+
+    public def parseTracks(def library) {
 
         def albums = parseAlbums(library.albums)
         debug("Albums: {}", albums)
@@ -105,7 +111,7 @@ public class IBroadcastLibraryParser {
         return tracks
     }
 
-    public static def parseTracks(def data, albums, artists) {
+    public def parseTracks(def data, albums, artists) {
 
         def trackMap = data.map
         def trackTitleIndex = trackMap.title
@@ -125,7 +131,7 @@ public class IBroadcastLibraryParser {
                 track.artist = artists[track.artistId]
                 track.number = val[trackNumberIndex] as Integer
                 track.folder = val[pathIndex]
-                track.key = TrackKey.generateKey(track)
+                track.key = trackKey.generateKey(track)
                 debug("Track: {}", track)
                 tracks.put(track.key, track)
             }
@@ -134,7 +140,7 @@ public class IBroadcastLibraryParser {
 
     }
 
-    public static def parseAlbums(def data) {
+    public def parseAlbums(def data) {
         debug("Parsing Albums")
         //parse the albums
         def albumMap = data.map
@@ -149,7 +155,7 @@ public class IBroadcastLibraryParser {
         return albums
     }
 
-    public static def parseArtists(def data) {
+    public def parseArtists(def data) {
         
         def artistMap = data.map
         def artists = [:]

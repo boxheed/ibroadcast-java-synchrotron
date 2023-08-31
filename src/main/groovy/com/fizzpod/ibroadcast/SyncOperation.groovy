@@ -1,5 +1,6 @@
 package com.fizzpod.ibroadcast;
 
+import org.apache.commons.io.FilenameUtils
 import static org.tinylog.Logger.*;
 
 import org.tinylog.*
@@ -26,18 +27,21 @@ public class SyncOperation {
             ],
             stats:  [uploaded: 0, skipped: 0, cleaned: 0]
         ]
-        context.libraries.remote = IBroadcast.library(context.credentials)
+        context.libraries.remote = IBroadcast.library(context.credentials, options.i)
         context.libraries.checksums = IBroadcast.checksums(context.credentials)
 
         def remoteLibrary = JsonOutput.toJson(context.libraries.remote)
         
         ThreadContext.put("mode", "scan")
 
-        TrackData.init(new File(options.b), options.f)
-        LocalMusic.scan(options.i, { f ->
-            info("{} ", f);
-            def data = TrackData.read(f);
+        TrackData.init(options.i, new File(options.b), options.f)
 
+
+        LocalMusic.scan(options.i, { f ->
+            info("{} ", f)
+            def data = TrackData.read(f)
+            data.relative = options.i.toPath().relativize(data.file.toPath()).toString()
+            data.relative = FilenameUtils.separatorsToUnix(data.relative)
             context.libraries.local.put(data.key, data)
 //            context.libraries.remote.remove(data.key)
         })
@@ -80,7 +84,7 @@ public class SyncOperation {
                 } else {
                     info("uploading {}", track.file)
                     if(!options.d) {
-                        IBroadcast.upload(context.credentials, track.file)
+                        IBroadcast.upload(context.credentials, track)
                     }
                     context.stats.uploaded++
                 }

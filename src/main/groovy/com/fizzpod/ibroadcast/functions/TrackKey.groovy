@@ -30,7 +30,7 @@ public class TrackKey {
     public def getFolderKey(def track) {
         def folder = track.folder
         if(inputPath != null) {
-            folder = inputPath.relativize(track.file.toPath()).toString()
+            folder = inputPath.toAbsolutePath().relativize(track.file.toPath().toAbsolutePath()).toString()
         }
         folder = FilenameUtils.separatorsToUnix(folder)
         return folder.replace("/", "")

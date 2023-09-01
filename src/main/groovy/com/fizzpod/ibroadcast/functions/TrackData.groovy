@@ -42,11 +42,11 @@ public class TrackData {
             String fileChecksum = Files.hash(trackFile, Hashing.md5()).toString();
             track.checksum = fileChecksum
 
-            track.key = TrackKey.generateKey(track)
+            track.key = trackKey.generateKey(track)
             debug("track {}", track)
             cache.put(track)
         }
-        track.key = TrackKey.generateKey(track)
+        track.key = trackKey.generateKey(track)
         return track;
     }
 

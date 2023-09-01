@@ -22,7 +22,8 @@ public class CLI {
             argName:'format',
             'Format for the database, values are either binary or json',
             defaultValue: "json")
-        cli.g(longOpt: 'filter',
+        cli.g(type:String,
+            longOpt: 'filter',
             args:1,
             argName:'filter',
             //TODO improve this filter

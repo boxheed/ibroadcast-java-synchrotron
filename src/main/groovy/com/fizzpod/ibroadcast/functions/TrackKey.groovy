@@ -7,17 +7,10 @@ import java.nio.file.Path
 
 public class TrackKey {
 
-    private Path inputPath = null
-
-    public TrackKey() {
-    }
-
-    public TrackKey(Path inputPath) {
-        this.inputPath = inputPath;
-    }
+    private File inputPath = null
 
     public TrackKey(File inputFolder) {
-        this.inputPath = inputFolder.toPath();
+        this.inputPath = inputFolder;
     }
 
     public def generateKey(def track) {
@@ -30,7 +23,11 @@ public class TrackKey {
     public def getFolderKey(def track) {
         def folder = track.folder
         if(inputPath != null) {
-            folder = inputPath.toAbsolutePath().relativize(track.file.toPath().toAbsolutePath()).toString()
+            String rootPath = FilenameUtils.getPath(inputPath.getAbsolutePath())
+            rootPath = FilenameUtils.separatorsToUnix(rootPath)
+            String trackFolder = FilenameUtils.getPath(track.folder)
+            trackFolder = FilenameUtils.separatorsToUnix(trackFolder)
+            folder = StringUtils.removeStart(trackFolder, rootPath)
         }
         folder = FilenameUtils.separatorsToUnix(folder)
         return folder.replace("/", "")

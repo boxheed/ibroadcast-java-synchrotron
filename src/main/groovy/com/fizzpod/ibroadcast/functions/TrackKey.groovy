@@ -21,16 +21,7 @@ public class TrackKey {
     }
 
     public def getFolderKey(def track) {
-        def folder = track.folder
-        if(inputPath != null) {
-            String rootPath = FilenameUtils.getPath(inputPath.getAbsolutePath())
-            rootPath = FilenameUtils.separatorsToUnix(rootPath)
-            String trackFolder = FilenameUtils.getPath(track.folder)
-            trackFolder = FilenameUtils.separatorsToUnix(trackFolder)
-            folder = StringUtils.removeStart(trackFolder, rootPath)
-        }
-        folder = FilenameUtils.separatorsToUnix(folder)
-        return folder.replace("/", "")
+        return track.relativePath
     }
 
     public def getTrackNumber(def track) {

@@ -54,6 +54,9 @@ dependencies {
 	implementation 'commons-io:commons-io:2.13.0'
 	implementation 'org.apache.commons:commons-lang3:3.13.0'
 
+	testImplementation platform("org.spockframework:spock-bom:2.3-groovy-4.0")
+  	testImplementation "org.spockframework:spock-core"
+
 }
 
 githubRelease {
@@ -71,4 +74,11 @@ githubRelease {
 		bootDistZip.outputs.files +
 		bootDistTar.outputs.files
 	}
+}
+
+test {
+  useJUnitPlatform()
+  testLogging {
+    events "passed", "skipped", "failed"
+  }
 }

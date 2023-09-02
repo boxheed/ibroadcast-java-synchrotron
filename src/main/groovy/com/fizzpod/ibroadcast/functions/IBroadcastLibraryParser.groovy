@@ -96,8 +96,10 @@ import groovy.contracts.*
 public class IBroadcastLibraryParser {
 
     private TrackKey trackKey
+    private File inputFolder
 
     public IBroadcastLibraryParser(File inputFolder) {
+        this.inputFolder = inputFolder
         trackKey = new TrackKey(inputFolder)
     }
 
@@ -131,7 +133,7 @@ public class IBroadcastLibraryParser {
                 track.artist = artists[track.artistId]
                 track.number = val[trackNumberIndex] as Integer
                 track.folder = val[pathIndex]
-                track.file = new File(track.folder)
+                track.relativePath = PathUtils.cut(inputFolder, track.folder)
                 track.key = trackKey.generateKey(track)
                 debug("Track: {}", track)
                 tracks.put(track.key, track)

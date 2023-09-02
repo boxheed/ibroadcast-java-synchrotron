@@ -11,6 +11,8 @@ public class TrackData {
 
     private static def trackKey
 
+    private static def inputFolderPath
+
     public static final def init(File inputFolder, File dataFolder, String format) {
         info("Initialising cache in folder {}", dataFolder)
         if(format == "binary") {
@@ -20,6 +22,7 @@ public class TrackData {
         }
         cache.open(dataFolder)
         trackKey = new TrackKey(inputFolder)
+        inputFolderPath = inputFolder.getAbsolutePath()
     }
 
     public static final def close(File dataFolder) {
@@ -37,6 +40,7 @@ public class TrackData {
             track = track + TrackTagReader.parse(trackFile)
             track.file = trackFile
             track.folder = trackFile.getParentFile().getAbsolutePath()
+            track.relativePath = PathUtils.cut(inputFolderPath, track.folder)
             track.path = trackFile.getAbsolutePath()
             track.modified = trackFile.lastModified()
             String fileChecksum = Files.hash(trackFile, Hashing.md5()).toString();
@@ -46,6 +50,7 @@ public class TrackData {
             debug("track {}", track)
             cache.put(track)
         }
+        track.relativePath = PathUtils.cut(inputFolderPath, track.folder)
         track.key = trackKey.generateKey(track)
         return track;
     }

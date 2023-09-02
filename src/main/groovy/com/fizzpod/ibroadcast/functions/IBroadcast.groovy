@@ -132,7 +132,7 @@ public class IBroadcast {
             .setType(MultipartBody.FORM)
             .addFormDataPart("file", fileName,
                 RequestBody.create(MediaType.parse(contentType), track))
-            .addFormDataPart("file_path", data.relative)
+            .addFormDataPart("file_path", data.relativePath)
             .addFormDataPart("method", CLIENT_NAME)
             .addFormDataPart("user_id", credentials.userId)
             .addFormDataPart("token", credentials.userToken)

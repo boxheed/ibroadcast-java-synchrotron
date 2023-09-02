@@ -40,8 +40,6 @@ public class SyncOperation {
         LocalMusic.scan(inputFolder, { f ->
             info("{} ", f)
             def track = TrackData.read(f)
-            track.relative = options.i.toPath().relativize(track.file.toPath()).toString()
-            track.relative = FilenameUtils.separatorsToUnix(track.relative)
             context.libraries.local.put(track.key, track)
 //            context.libraries.remote.remove(data.key)
         })

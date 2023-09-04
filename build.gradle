@@ -48,7 +48,7 @@ dependencies {
 
 	implementation 'org.tinylog:tinylog-api:2.6.2'
 	implementation 'org.tinylog:tinylog-impl:2.6.2'
-	implementation 'org.mapdb:mapdb:3.0.9'
+	implementation 'org.mapdb:mapdb:3.0.10'
 	implementation 'com.squareup.okhttp3:okhttp:4.11.0'
 	implementation 'net.jthink:jaudiotagger:3.0.1'
 	implementation 'commons-io:commons-io:2.13.0'

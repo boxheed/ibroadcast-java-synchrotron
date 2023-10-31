@@ -21,7 +21,6 @@ apply plugin: 'groovy'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'application'
-apply plugin: 'com.github.breadmoirai.github-release'
 
 
 tasks.named("bootJar") {

@@ -11,34 +11,31 @@ buildscript {
 	}
 	dependencies {
 		classpath 'com.fizzpod:gradle-java-opinion:0.14.12'
-		classpath "io.spring.gradle:dependency-management-plugin:1.1.3"
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:2.7.11"
+		classpath 'com.github.johnrengelman:shadow:8.1.1'
   	}
 }
 
 apply plugin: 'com.fizzpod.pater-build'
 apply plugin: 'groovy'
-apply plugin: 'io.spring.dependency-management'
-apply plugin: 'org.springframework.boot'
 apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 
-tasks.named("bootJar") {
-	mainClass = 'com.fizzpod.ibroadcast.Main'
-}
-
-tasks.named("bootJar") {
-	launchScript()
-}
-
+mainClassName = 'com.fizzpod.ibroadcast.Main'
 
 application {
 	applicationName = "ibsync"
 }
 
-artifacts {
-    tasks.named("bootJar")
+shadowJar {
+  transform(com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer)
 }
+
+artifacts {
+    tasks.named("shadowJar")
+}
+
+build.dependsOn shadowJar
 
 dependencies {
 	implementation 'org.apache.groovy:groovy-all:4.0.15'

@@ -39,7 +39,7 @@ build.dependsOn shadowJar
 
 dependencies {
 	implementation 'org.apache.groovy:groovy-all:4.0.15'
-	implementation 'org.apache.groovy:groovy-contracts:4.0.15'
+	implementation 'org.apache.groovy:groovy-contracts:4.0.16'
 
 	implementation 'org.tinylog:tinylog-api:2.6.2'
 	implementation 'org.tinylog:tinylog-impl:2.6.2'

@@ -6,3 +6,4 @@ bin
 .settings
 .vscode
 data
+testrun.sh

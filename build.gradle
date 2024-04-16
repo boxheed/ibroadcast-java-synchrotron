@@ -10,7 +10,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath 'com.fizzpod:gradle-java-opinion:0.14.13'
+		classpath 'com.fizzpod:gradle-java-opinion:0.14.15'
 		classpath 'com.github.johnrengelman:shadow:8.1.1'
   	}
 }
@@ -38,15 +38,15 @@ artifacts {
 build.dependsOn shadowJar
 
 dependencies {
-	implementation 'org.apache.groovy:groovy-all:4.0.18'
-	implementation 'org.apache.groovy:groovy-contracts:4.0.18'
+	implementation 'org.apache.groovy:groovy-all:4.0.21'
+	implementation 'org.apache.groovy:groovy-contracts:4.0.21'
 
 	implementation 'org.tinylog:tinylog-api:2.7.0'
 	implementation 'org.tinylog:tinylog-impl:2.7.0'
 	implementation 'org.mapdb:mapdb:3.1.0'
 	implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 	implementation 'net.jthink:jaudiotagger:3.0.1'
-	implementation 'commons-io:commons-io:2.15.1'
+	implementation 'commons-io:commons-io:2.16.1'
 	implementation 'org.apache.commons:commons-lang3:3.14.0'
 
 	testImplementation platform("org.spockframework:spock-bom:2.3-groovy-4.0")

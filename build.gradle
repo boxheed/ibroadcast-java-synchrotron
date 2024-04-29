@@ -10,7 +10,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath 'com.fizzpod:gradle-java-opinion:0.14.15'
+		classpath 'com.fizzpod:gradle-java-opinion:0.14.16'
 		classpath 'com.github.johnrengelman:shadow:8.1.1'
   	}
 }

@@ -7,3 +7,4 @@ bin
 .vscode
 data
 testrun.sh
+.osv-scanner

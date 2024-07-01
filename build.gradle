@@ -46,7 +46,7 @@ artifacts {
 build.dependsOn shadowJar
 
 dependencies {
-	implementation 'org.apache.groovy:groovy-all:4.0.21'
+	implementation 'org.apache.groovy:groovy-all:4.0.22'
 	implementation 'org.apache.groovy:groovy-contracts:4.0.21'
 
 	implementation 'org.tinylog:tinylog-api:2.7.0'

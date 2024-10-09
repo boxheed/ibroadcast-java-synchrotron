@@ -73,7 +73,6 @@ githubRelease {
 	dryRun false
     releaseAssets { ->
 		jar.outputs.files +
-		bootJar.outputs.files +
 		bootDistZip.outputs.files +
 		bootDistTar.outputs.files
 	}

@@ -11,14 +11,14 @@ buildscript {
 	}
 	dependencies {
 		classpath 'com.fizzpod:gradle-java-opinion:0.14.28'
-		classpath 'com.github.johnrengelman:shadow:8.1.1'
+		classpath 'com.gradleup.shadow:shadow-gradle-plugin:9.3.1'
   	}
 }
 
 apply plugin: 'com.fizzpod.pater-build'
 apply plugin: 'groovy'
 apply plugin: 'application'
-apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'com.gradleup.shadow'
 spotbugsTest.enabled = false
 
 compileJava {
@@ -29,9 +29,8 @@ compileGroovy {
     options.release = 17
 }
 
-mainClassName = 'com.fizzpod.ibroadcast.Main'
-
 application {
+	mainClass = 'com.fizzpod.ibroadcast.Main'
 	applicationName = "ibsync"
 }
 

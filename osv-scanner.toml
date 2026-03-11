@@ -11,3 +11,8 @@ reason = "No fix available from mapdb"
 id = "GHSA-vqf4-7m7x-wgfc"
 ignoreUntil = 2027-01-01
 reason = "No fix available from mapdb"
+
+[[IgnoredVulns]]
+id = "GHSA-72hv-8253-57qq"
+ignoreUntil = 2027-01-01
+reason = "Not vulnerable to the async json parser allocation exhaustion in mapdb usage"

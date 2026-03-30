@@ -61,8 +61,8 @@ dependencies {
   	testImplementation "org.spockframework:spock-core"
 
 	spotbugs 'com.github.spotbugs:spotbugs:4.9.8'
-	spotbugs 'org.apache.logging.log4j:log4j-core:2.25.3'
-	spotbugs 'org.apache.logging.log4j:log4j-api:2.25.3'
+	spotbugs 'org.apache.logging.log4j:log4j-core:2.25.4'
+	spotbugs 'org.apache.logging.log4j:log4j-api:2.25.4'
 }
 
 githubRelease {

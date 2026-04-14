@@ -1,20 +1,21 @@
 # This is a Gradle generated file for dependency locking.
 # Manual edits can break the build and are not advised.
 # This file is expected to be part of source control.
-com.fasterxml.jackson.core:jackson-annotations:2.20=runtimeClasspath,testRuntimeClasspath
-com.fasterxml.jackson.core:jackson-core:2.20.1=runtimeClasspath,testRuntimeClasspath
-com.fasterxml.jackson.core:jackson-databind:2.20.1=runtimeClasspath,testRuntimeClasspath
-com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.20.1=runtimeClasspath,testRuntimeClasspath
-com.fasterxml.jackson:jackson-bom:2.20.1=runtimeClasspath,testRuntimeClasspath
+com.fasterxml.jackson.core:jackson-annotations:2.21=runtimeClasspath,testRuntimeClasspath
+com.fasterxml.jackson.core:jackson-core:2.21.2=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+com.fasterxml.jackson.core:jackson-databind:2.21.2=runtimeClasspath,testRuntimeClasspath
+com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.21.2=runtimeClasspath,testRuntimeClasspath
+com.fasterxml.jackson:jackson-bom:2.21.2=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 com.github.javaparser:javaparser-core:3.28.0=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 com.github.spotbugs:spotbugs-annotations:4.9.8=spotbugs
 com.github.spotbugs:spotbugs:4.9.8=spotbugs
 com.github.stephenc.jcip:jcip-annotations:1.0-1=spotbugs
 com.google.code.findbugs:jsr305:3.0.2=spotbugs
 com.google.code.gson:gson:2.13.2=spotbugs
-com.google.errorprone:error_prone_annotations:2.41.0=compileClasspath,runtimeClasspath,spotbugs,testCompileClasspath,testRuntimeClasspath
+com.google.errorprone:error_prone_annotations:2.41.0=spotbugs
+com.google.errorprone:error_prone_annotations:2.47.0=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 com.google.guava:failureaccess:1.0.3=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-com.google.guava:guava:33.5.0-jre=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+com.google.guava:guava:33.6.0-jre=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 com.google.j2objc:j2objc-annotations:3.1=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 com.squareup.okhttp3:okhttp-jvm:5.3.2=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
@@ -66,8 +67,8 @@ org.apache.groovy:groovy-xml:5.0.4=compileClasspath,runtimeClasspath,testCompile
 org.apache.groovy:groovy-yaml:5.0.4=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 org.apache.groovy:groovy:5.0.4=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 org.apache.ivy:ivy:2.5.3=runtimeClasspath,testRuntimeClasspath
-org.apache.logging.log4j:log4j-api:2.25.3=spotbugs
-org.apache.logging.log4j:log4j-core:2.25.3=spotbugs
+org.apache.logging.log4j:log4j-api:2.25.4=spotbugs
+org.apache.logging.log4j:log4j-core:2.25.4=spotbugs
 org.apiguardian:apiguardian-api:1.1.2=testCompileClasspath
 org.dom4j:dom4j:2.2.0=spotbugs
 org.eclipse.collections:eclipse-collections-api:10.4.0=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
@@ -122,5 +123,5 @@ org.spockframework:spock-core:2.4-groovy-5.0=testCompileClasspath,testRuntimeCla
 org.tinylog:tinylog-api:2.7.0=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 org.tinylog:tinylog-impl:2.7.0=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 org.xmlresolver:xmlresolver:5.3.3=spotbugs
-org.yaml:snakeyaml:2.4=runtimeClasspath,testRuntimeClasspath
+org.yaml:snakeyaml:2.5=runtimeClasspath,testRuntimeClasspath
 empty=annotationProcessor,shadow,spotbugsPlugins,testAnnotationProcessor

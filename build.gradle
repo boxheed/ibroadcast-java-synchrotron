@@ -45,8 +45,11 @@ artifacts {
 build.dependsOn shadowJar
 
 dependencies {
-	implementation 'org.apache.groovy:groovy-all:5.0.4'
-	implementation 'org.apache.groovy:groovy-contracts:5.0.4'
+	implementation ('org.apache.groovy:groovy-all:5.0.5') {
+		exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+	}
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.21.2'
+	implementation 'org.apache.groovy:groovy-contracts:5.0.5'
 
 	implementation 'org.tinylog:tinylog-api:2.7.0'
 	implementation 'org.tinylog:tinylog-impl:2.7.0'

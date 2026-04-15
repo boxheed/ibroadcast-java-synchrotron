@@ -11,14 +11,14 @@ buildscript {
 	}
 	dependencies {
 		classpath 'com.fizzpod:gradle-java-opinion:0.14.28'
-		classpath 'com.github.johnrengelman:shadow:8.1.1'
+		classpath 'com.gradleup.shadow:shadow-gradle-plugin:9.3.1'
   	}
 }
 
 apply plugin: 'com.fizzpod.pater-build'
 apply plugin: 'groovy'
 apply plugin: 'application'
-apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'com.gradleup.shadow'
 spotbugsTest.enabled = false
 
 compileJava {
@@ -29,9 +29,8 @@ compileGroovy {
     options.release = 17
 }
 
-mainClassName = 'com.fizzpod.ibroadcast.Main'
-
 application {
+	mainClass = 'com.fizzpod.ibroadcast.Main'
 	applicationName = "ibsync"
 }
 
@@ -61,8 +60,10 @@ dependencies {
   	testImplementation "org.spockframework:spock-core"
 
 	spotbugs 'com.github.spotbugs:spotbugs:4.9.8'
-	spotbugs 'org.apache.logging.log4j:log4j-core:2.25.3'
-	spotbugs 'org.apache.logging.log4j:log4j-api:2.25.3'
+	spotbugs 'org.apache.logging.log4j:log4j-core:2.25.4'
+	spotbugs 'org.apache.logging.log4j:log4j-api:2.25.4'
+
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.21.2'
 }
 
 githubRelease {

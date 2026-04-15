@@ -46,8 +46,11 @@ artifacts {
 build.dependsOn shadowJar
 
 dependencies {
-	implementation 'org.apache.groovy:groovy-all:4.0.28'
-	implementation 'org.apache.groovy:groovy-contracts:4.0.28'
+	implementation ('org.apache.groovy:groovy-all:5.0.5') {
+		exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+	}
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.21.2'
+	implementation 'org.apache.groovy:groovy-contracts:5.0.5'
 
 	implementation 'org.tinylog:tinylog-api:2.7.0'
 	implementation 'org.tinylog:tinylog-impl:2.7.0'
@@ -60,6 +63,9 @@ dependencies {
 	testImplementation platform("org.spockframework:spock-bom:2.4-groovy-5.0")
   	testImplementation "org.spockframework:spock-core"
 
+	spotbugs 'com.github.spotbugs:spotbugs:4.9.8'
+	spotbugs 'org.apache.logging.log4j:log4j-core:2.25.4'
+	spotbugs 'org.apache.logging.log4j:log4j-api:2.25.4'
 }
 
 githubRelease {

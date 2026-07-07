@@ -11,3 +11,9 @@ reason = "No fix available from mapdb"
 id = "GHSA-vqf4-7m7x-wgfc"
 ignoreUntil = 2027-01-01
 reason = "No fix available from mapdb"
+
+[[IgnoredVulns]]
+id = "GHSA-5jmj-h7xm-6q6v"
+ignoreUntil = 2027-01-01
+reason = "No fix available for Jackson 2.22.x line yet"
+

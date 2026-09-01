@@ -45,16 +45,16 @@ artifacts {
 build.dependsOn shadowJar
 
 dependencies {
-	implementation ('org.apache.groovy:groovy-all:5.0.8') {
+	implementation ('org.apache.groovy:groovy-all:5.1.1') {
 		exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
 	}
-	implementation 'com.fasterxml.jackson.core:jackson-core:2.22.1'
-	implementation 'org.apache.groovy:groovy-contracts:5.0.8'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.22.2'
+	implementation 'org.apache.groovy:groovy-contracts:5.1.1'
 
 	implementation 'org.tinylog:tinylog-api:2.7.0'
 	implementation 'org.tinylog:tinylog-impl:2.7.0'
 	implementation 'org.mapdb:mapdb:3.1.0'
-	implementation 'com.squareup.okhttp3:okhttp:5.4.0'
+	implementation 'com.squareup.okhttp3:okhttp:5.5.0'
 	implementation 'net.jthink:jaudiotagger:3.0.1'
 	implementation 'commons-io:commons-io:2.22.0'
 	implementation 'org.apache.commons:commons-lang3:3.20.0'
@@ -62,11 +62,11 @@ dependencies {
 	testImplementation platform("org.spockframework:spock-bom:2.4-groovy-5.0")
   	testImplementation "org.spockframework:spock-core"
 
-	spotbugs 'com.github.spotbugs:spotbugs:4.10.3'
+	spotbugs 'com.github.spotbugs:spotbugs:4.10.4'
 	spotbugs 'org.apache.logging.log4j:log4j-core:2.26.1'
 	spotbugs 'org.apache.logging.log4j:log4j-api:2.26.1'
 
-	implementation 'com.fasterxml.jackson.core:jackson-core:2.22.1'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.22.2'
 }
 
 githubRelease {
